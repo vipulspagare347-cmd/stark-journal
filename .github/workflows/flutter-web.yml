@@ -15,13 +15,13 @@ jobs:
         with:
           flutter-version: "3.19.0"
 
-      - run: flutter config --enable-web
-      - run: flutter pub get
-        working-directory: frontend
-      - run: flutter build web --release
+      - name: Enable Flutter Web
+        run: flutter config --enable-web
+
+      - name: Install dependencies
+        run: flutter pub get
         working-directory: frontend
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: web-build
-          path: frontend/build/web
+      - name: Build Flutter Web
+        run: flutter build web --release
+        working-directory: frontend
